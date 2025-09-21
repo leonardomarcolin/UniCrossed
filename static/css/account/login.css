@@ -1,0 +1,173 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #09000e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#videoBG {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    opacity: 10%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 66vh;
+    padding: 40px 60px;
+    color: white;
+}
+
+.itens {
+    background-color: rgba(0, 27, 0, 0.26);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    backdrop-filter: blur(100%);
+}
+
+.faca-login {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    margin-bottom: 40px;
+    
+}
+
+.input-com-icone {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-com-icone i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 18px;
+}
+
+.input-com-icone input {
+    background-color: rgba(128, 128, 128, 0.425);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    outline: none;
+    padding: 20px 20px 20px 45px;
+    height: 60px;
+    width: 410px;
+    font-size: 16px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.butao {
+    color: white;
+    background-color: #347cfc;
+    border-radius: 5px;
+    border: none;
+    width: 410px;
+    height: 60px;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.butao:hover {
+    background-color: #255edc; 
+    transform: scale(1.03); 
+    transition: all 0.3s ease;
+}
+
+.butao2 {
+    color: white;
+    background-color: rgba(128, 128, 128, 0.692);
+    border: none;
+    border-radius: 5px;
+    width: 410px;
+    height: 60px;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 20px;
+    display: block;
+}
+
+.butao2:hover {
+    background-color: #666;
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #000;
+    text-align: center;
+    width: 300px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background: #2b2b2b;
+    color: white;
+    display: flex;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+
+}
+
+.login-btn,
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: #3a66f7;
+    color: white;
+}
+
+.register-btn {
+    background-color: #444;
+    color: white;
+}
+
+.nav-link {
+    margin-top: 10px;
+}
+
+.forgot-btn {
+    color: #aaa;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 8px;
+}

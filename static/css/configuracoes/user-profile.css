@@ -1,0 +1,757 @@
+/* CSS Variables for consistent theming */
+:root {
+  --primary-green: #00b86b;
+  --primary-purple: #7e0176;
+  --primary-blue: #4ecdc4;
+  --dark-bg: #0a0110;
+  --card-bg: #170021;
+  --card-secondary: #2d1b4e;
+  --text-primary: #ffffff;
+  --text-secondary: #b89cff;
+  --text-muted: #8a9ba8;
+  --border-color: rgba(112, 211, 143, 0.2);
+  --error-color: #f44336;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --info-color: #2196f3;
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  --shadow-light: 0 8px 32px rgba(31, 38, 135, 0.37);
+  --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Video background */
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  z-index: -1;
+  pointer-events: none;
+  filter: brightness(0.7) blur(1px);
+}
+
+/* Main container */
+.profile-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Profile Header */
+.profile-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: slideDown 0.6s ease-out;
+}
+
+.btn-voltar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border: 2px solid var(--primary-purple);
+  color: var(--text-secondary);
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background: var(--primary-purple);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(126, 1, 118, 0.4);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 1rem 0;
+}
+
+.breadcrumb .current {
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+/* Profile Card */
+.profile-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 2px solid var(--border-color);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow-heavy);
+  animation: slideUp 0.6s ease-out 0.2s both;
+  position: relative; /* Allow absolute positioning of menu */
+}
+
+/* Profile Main Section */
+.profile-main {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.profile-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-avatar img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-green);
+  box-shadow: 0 10px 30px rgba(0, 184, 107, 0.4);
+}
+
+.profile-status {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid var(--card-bg);
+}
+
+.profile-status.online {
+  background: var(--success-color);
+}
+
+.profile-status.away {
+  background: var(--warning-color);
+}
+
+.profile-status.offline {
+  background: var(--text-muted);
+}
+
+/* Profile Info */
+.profile-info {
+  flex: 1;
+}
+
+.profile-name-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.profile-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+}
+
+.badge.verified {
+  background: var(--primary-green);
+  color: white;
+}
+
+.profile-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.course-info,
+.institution-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.course-info i,
+.institution-info i {
+  color: var(--primary-blue);
+}
+
+/* Action Buttons */
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, var(--primary-green), var(--primary-blue));
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 184, 107, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 184, 107, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 2px solid var(--primary-purple);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-purple);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Profile Stats */
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Profile Sections */
+.profile-section {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.4rem;
+  color: var(--primary-green);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Bio Section */
+.bio-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* Skills Section */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-tag {
+  background: linear-gradient(45deg, var(--primary-green), var(--primary-blue));
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.no-skills {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Availability Section */
+.availability-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.availability-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.availability-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.availability-days,
+.availability-times,
+.study-preferences {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.day-chip,
+.time-chip,
+.preference-chip {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.day-chip.available {
+  background: var(--primary-green);
+  color: white;
+}
+
+.time-chip.available {
+  background: var(--primary-blue);
+  color: white;
+}
+
+.preference-chip.active {
+  background: var(--primary-purple);
+  color: white;
+}
+
+/* Academic Info Section */
+.academic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.academic-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.academic-item i {
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+}
+
+.academic-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.academic-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.academic-value {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toast {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  min-width: 320px;
+  transform: translateX(400px);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-light);
+}
+
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-success { border-left: 4px solid var(--success-color); }
+.toast-error { border-left: 4px solid var(--error-color); }
+.toast-warning { border-left: 4px solid var(--warning-color); }
+.toast-info { border-left: 4px solid var(--info-color); }
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    margin: 1rem auto;
+    padding: 0 16px;
+  }
+
+  .profile-card {
+    padding: 24px 20px;
+  }
+
+  .profile-main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .profile-avatar img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-name {
+    font-size: 2rem;
+  }
+
+  .profile-actions {
+    justify-content: center;
+  }
+
+  .btn-voltar {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .profile-stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .academic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toast {
+    left: 16px;
+    right: 16px;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-name {
+    font-size: 1.8rem;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .availability-days,
+  .availability-times,
+  .study-preferences {
+    justify-content: center;
+  }
+}
+
+/* Floating Bubble Menu Styles */
+.profile-menu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  filter: url('#shadowed-goo');
+  z-index: 1000;
+  display: none; /* Hidden by default, shown for own profile */
+}
+
+.profile-menu.show {
+  display: block;
+}
+
+.profile-menu .menu-open {
+  display: none;
+}
+
+.profile-menu .menu-open-button {
+  position: relative;
+  color: #FFFFFF;
+  text-align: center;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--primary-green), var(--primary-blue));
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 184, 107, 0.4);
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-menu .menu-open-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 184, 107, 0.6);
+}
+
+.profile-menu .menu-open-button .hamburger {
+  width: 18px;
+  height: 2px;
+  background: white;
+  display: block;
+  position: absolute;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.profile-menu .menu-open-button .hamburger-1 {
+  transform: translateY(-5px);
+}
+
+.profile-menu .menu-open-button .hamburger-2 {
+  transform: translateY(0px);
+}
+
+.profile-menu .menu-open-button .hamburger-3 {
+  transform: translateY(5px);
+}
+
+.profile-menu .menu-open:checked + .menu-open-button .hamburger-1 {
+  transform: rotate(45deg) translateY(0px);
+}
+
+.profile-menu .menu-open:checked + .menu-open-button .hamburger-2 {
+  opacity: 0;
+}
+
+.profile-menu .menu-open:checked + .menu-open-button .hamburger-3 {
+  transform: rotate(-45deg) translateY(0px);
+}
+
+.profile-menu .menu-item {
+  position: absolute;
+  left: 5px; /* Centered under the main button */
+  color: #FFFFFF;
+  border-radius: 50%;
+  background: var(--primary-purple);
+  width: 40px;
+  height: 40px;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  box-shadow: 0 3px 15px rgba(126, 1, 118, 0.4);
+  font-size: 14px;
+}
+
+.profile-menu .menu-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(126, 1, 118, 0.6);
+}
+
+.profile-menu .menu-item.logout-item {
+  background: linear-gradient(135deg, #ff3b30, #d70015);
+  box-shadow: 0 3px 15px rgba(255, 59, 48, 0.4);
+}
+
+.profile-menu .menu-item.logout-item:hover {
+  box-shadow: 0 4px 20px rgba(255, 59, 48, 0.6);
+}
+
+/* First item (Edit Profile) - appears directly below main button */
+.profile-menu .menu-open:checked ~ .menu-item:nth-child(3) {
+  top: 60px;
+  transform: scale(1);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+/* Second item (Logout) - appears below the first item */
+.profile-menu .menu-open:checked ~ .menu-item:nth-child(4) {
+  top: 110px;
+  transform: scale(1);
+  opacity: 1;
+  transition-delay: 0.15s;
+}
+
+/* SVG Filters */
+svg {
+  position: fixed;
+  top: 100%;
+  left: 100%;
+  width: 0;
+  height: 0;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .profile-name-section {
+    justify-content: center;
+  }
+  
+  .profile-menu {
+    top: 15px;
+    right: 15px;
+  }
+
+  .profile-menu .menu-open-button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .profile-menu .menu-item {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+    top: 50px;
+  }
+
+  /* Mobile: items still expand horizontally but closer */
+  .profile-menu .menu-open:checked ~ .menu-item:nth-child(3) {
+    transform: translate(50px, 0) scale(1);
+    opacity: 1;
+    transition-delay: 0.1s;
+  }
+
+  .profile-menu .menu-open:checked ~ .menu-item:nth-child(4) {
+    transform: translate(90px, 0) scale(1);
+    opacity: 1;
+    transition-delay: 0.15s;
+  }
+}

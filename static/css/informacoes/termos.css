@@ -1,0 +1,118 @@
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    opacity: 10%;
+    z-index: 0;
+}
+
+.config-container {
+    max-width: 700px;
+    margin: 5vh auto;
+    background-color: rgba(20, 15, 25, 0.605);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(126, 1, 118, 0.3);
+    z-index: 2;
+    position: relative;
+}
+
+.config-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #2a0060, #7e0176b8);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.config-topbar h1 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0;
+}
+
+.btn-voltar {
+    background-color: transparent;
+    border: 2px solid #7e0176;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s;
+}
+
+.btn-voltar:hover {
+    background-color: #7e0176;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    /* fundo escuro */
+    color: #f0f0f0;
+    /* texto principal claro */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: rgb(10, 1, 16);
+}
+
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #9b59b6;
+    /* roxo principal */
+    text-align: center;
+}
+
+h2 {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    color: #2ecc71;
+    /* verde destaque */
+    border-left: 4px solid #9b59b6;
+    /* roxo na borda */
+    padding-left: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.05em;
+    color: #f0f0f0;
+}
+
+ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    color: #b0b0b0;
+    /* texto levemente apagado para listas */
+}
+
+strong {
+    color: #9b59b6;
+    /* roxo aplicado a textos destacados */
+}
+
+footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    text-align: center;
+    font-size: 0.95em;
+    color: #888;
+}

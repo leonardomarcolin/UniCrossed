@@ -1,0 +1,139 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#videoBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.1; /* vídeo de fundo mais suave */
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #ffffff;
+  background: #0e0a1c;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  width: 100%;
+}
+
+.logo {
+  width: 120px;
+}
+
+/* Botão voltar */
+.btn-voltar {
+  background: linear-gradient(90deg, #00ffb3, #a259ff);
+  color: #0e0a1c;
+  padding: 10px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 179, 0.3);
+  transition: 0.3s;
+}
+
+.btn-voltar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(66, 202, 161, 0.616);
+}
+
+/* FAQ */
+.faq-container {
+  max-width: 800px;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+.faq-title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 40px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(162, 89, 255, 0.5);
+}
+
+.faq-title .highlight {
+  background: linear-gradient(90deg, #00ffb3, #a259ff, #00ffb3);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  animation: pulseGradient 5s infinite linear;
+}
+
+@keyframes pulseGradient {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 300%;
+  }
+}
+
+.faq-item {
+  background-color: rgba(27, 20, 45, 0.9);
+  border-radius: 15px;
+  padding: 25px 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(81, 187, 155, 0.459);
+}
+
+.faq-item h2 {
+  font-size: 1.4rem;
+  color: #a259ff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq-item p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .faq-title {
+    font-size: 2rem;
+  }
+
+  .btn-voltar {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .faq-item h2 {
+    font-size: 1.2rem;
+  }
+}

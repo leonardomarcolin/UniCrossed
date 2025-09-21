@@ -1,0 +1,153 @@
+/* UniCrossed Global Design System */
+:root {
+  /* Brand Colors */
+  --primary-green: #00b86b;
+  --primary-purple: #5e2dab;
+  --secondary-purple: #7e0176;
+  --accent-purple: #2a0060;
+  
+  /* Background Colors */
+  --dark-bg: #0a0a0a;
+  --soft-black: #1a1a1a;
+  --card-bg: #121212;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  
+  /* Text Colors */
+  --text-light: #f0f0f0;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+  --gradient-dark: linear-gradient(145deg, rgb(15, 11, 18), rgb(25, 18, 35));
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  
+  /* Typography */
+  --font-primary: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 50%;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
+  --shadow-glow-green: 0 8px 25px rgba(0, 184, 107, 0.2);
+  --shadow-glow-purple: 0 8px 25px rgba(126, 1, 118, 0.2);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-bounce: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Button Styles */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--text-light);
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-purple);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-green);
+  border: 2px solid var(--primary-green);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-green);
+  color: var(--dark-bg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-green);
+}
+
+/* Global Card Styles */
+.card-glass {
+  background: var(--gradient-glass);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.card-glass:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Global Typography */
+body {
+  font-family: var(--font-primary);
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Global Input Styles */
+.input-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  color: var(--text-light);
+  font-family: var(--font-primary);
+  transition: all var(--transition-base);
+}
+
+.input-glass:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(0, 184, 107, 0.2);
+}
+
+.input-glass::placeholder {
+  color: var(--text-muted);
+}

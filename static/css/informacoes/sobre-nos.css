@@ -1,0 +1,196 @@
+/* Geral */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #09000e;
+    color: #ffffff;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* SOBRE NÓS */
+.container {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    background: #1f1b2e;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.container h1 {
+    color: #7f5af0;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.container p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.container strong {
+    color: #7f5af0;
+}
+
+/* NOSSO TIME */
+.team-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #1f1b2e;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.team-container h1 {
+    color: #7f5af0;
+    margin-bottom: 30px;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    background-color: #2a2640;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: 180px;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #7f5af0;
+}
+
+.team-member p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #7f5af0;
+    transition: background 0.2s ease;
+}
+
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #1f1b2e;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: #7f5af0;
+    margin-bottom: 10px;
+}
+
+.modal-content h4 {
+    margin-bottom: 15px;
+    color: #cfc6f8;
+}
+
+.modal-content p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ffffff;
+}
+
+.config-container {
+    max-width: 700px;
+    margin: 5vh auto;
+    background-color: rgba(20, 15, 25, 0.605);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(126, 1, 118, 0.3);
+    z-index: 2;
+    position: relative;
+}
+
+.config-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #2a0060, #7e0176b8);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.config-topbar h1 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0;
+}
+
+.btn-voltar {
+    background-color: transparent;
+    border: 2px solid #7e0176;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s;
+}
+
+.btn-voltar:hover {
+    background-color: #7e0176;
+}
+
+.config-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.logo{
+    width: 80px;
+    height: 80px;
+    position: relative;
+    left: 450px;
+}
