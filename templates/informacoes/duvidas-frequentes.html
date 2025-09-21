@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dúvidas Frequentes - UniCrosed</title>
+  <link rel="stylesheet" href="{% static 'css/informacoes/duvidas-frequentes.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <video autoplay muted loop id="videoBG">
+    <source src="{% static 'videos/informacoes/fale-conosco.mp4' %}" type="video/mp4" />
+  </video>
+
+  <header>
+    <img class="logo" src="{% static 'img/home/UniCrossed_Logo.jpg' %}" alt="logo" />
+    <button class="btn-voltar" onclick="history.back()">
+      <i class="fa-solid fa-arrow-left"></i> Voltar
+    </button>
+  </header>
+
+  <main class="faq-container">
+    <h1 class="faq-title">
+      Dúvidas Frequentes <span class="highlight">UniCrosed</span>
+    </h1>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-circle-question"></i> O que é a UniCrosed?</h2>
+      <p>Uma plataforma feita para universitários se conectarem, trocarem conhecimento e crescerem juntos dentro e fora da faculdade.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-heart"></i> A UniCrosed é tipo um aplicativo de relacionametos?</h2>
+      <p>Parece no gesto de deslizar, mas aqui a ideia é conectar estudantes pra aprenderem juntos, não namorar.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-money-bill-wave"></i> Preciso pagar para usar?</h2>
+      <p>Não! É totalmente gratuito pra estudantes.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-link"></i> Como funcionam os linkeds?</h2>
+      <p>Você curte os perfis com interesses parecidos. Se ambos curtirem, podem conversar e compartilhar conhecimento.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-handshake"></i> Posso usar sem ensinar nada?</h2>
+      <p>Pode tentar! Mas o foco do projeto é uma relação de troca de conhecimento entre os dois.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-sliders"></i> Como são escolhidos os perfis?</h2>
+      <p>Baseado nos seus interesses, curso, instituição e áreas escolhidas.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-user-pen"></i> Posso editar meus interesses?</h2>
+      <p>Sim! Você pode mudar nas configurações do seu perfil sempre que quiser.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-ban"></i> E se eu não quiser mais falar com alguém?</h2>
+      <p>É só desfazer o match ou bloquear a pessoa.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-flag"></i> Posso denunciar alguém?</h2>
+      <p>Sim! Todo perfil e chat tem um botão de denúncia.</p>
+    </div>
+
+    <div class="faq-item">
+      <h2><i class="fa-solid fa-mobile-screen-button"></i> Funciona no celular?</h2>
+      <p>Ainda não! Mas estamos trabalhando duro para desenvolver o quanto antes.</p>
+    </div>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniCrossed.com | Unindo conhecimento com networking</title>
+  <link rel="icon" href="{% static 'img/home/UniCrossed_Logo.jpg' %}" />
+  <link rel="stylesheet" href="{% static 'css/landingpage/landingPageCSS.css' %}" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --imagem-fundo: url('{% static 'img/landingpage/landingPageBackground.jpg' %}');
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="{% static 'img/home/UniCrossed_Logo.jpg' %}" alt="UniCrossed Logo" />
+      <span>Uni<span style="color: var(--primary-purple);">Crossed</span></span>
+
+    </div>
+    <nav>
+      <a href="{% url 'sobre_nos' %}"><i class="fas fa-info-circle"></i> Sobre</a>
+      <a href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt"></i> Entrar</a>
+      <a href="{% url 'account_signup' %}"><i class="fas fa-user-plus"></i> Cadastrar</a>
+    </nav>
+  </header>
+
+
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Conecte-se com colegas e forme grupos de estudo perfeitos</h1>
+      <p>Encontre estudantes da sua universidade com os mesmos objetivos acadêmicos que você!</p>
+      <a href="{% url 'account_signup' %}" class="cta-btn">Começar Agora</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <i class="fas fa-user-graduate"></i>
+      <h3>Match Acadêmico</h3>
+      <p>Conecte-se com base em curso, interesses e horários disponíveis.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-comments"></i>
+      <h3>Chat Direto</h3>
+      <p>Converse em tempo real e monte grupos MultiLinked.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-trophy"></i>
+      <h3>Conquistas Acadêmicas</h3>
+      <p>Exiba suas conquistas e inspire seus colegas.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-university"></i>
+      <h3>Integração Universitária</h3>
+      <p>Encontre alunos de sua faculdade ou de instituições parceiras.</p>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Conexões que transformaram trajetórias:</h2>
+    <div class="testimonial-carousel-container">
+      <div class="testimonial-carousel" id="testimonial-carousel">
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana Clara">
+          <div class="testimonial-text">
+            <h4>Ana Clara</h4>
+            <span>Direito - USP</span>
+            <p>“O UniCrossed me ajudou a organizar estudos. Com ele, finalizei meu TCC com segurança!”</p>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="João Pedro">
+          <div class="testimonial-text">
+            <h4>João Pedro</h4>
+            <span>Engenharia - UFSC</span>
+            <p>“Conheci um grupo de estudos incrível. Hoje somos sócios em uma startup!”</p>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Marina">
+          <div class="testimonial-text">
+            <h4>Marina</h4>
+            <span>Psicologia - UFRJ</span>
+            <p>“Estudar em grupo nunca foi meu forte, mas com o UniCrossed virei destaque na turma.”</p>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Lucas">
+          <div class="testimonial-text">
+            <h4>Lucas</h4>
+            <span>Computação - UnB</span>
+            <p>“Aprendi mais com meu grupo aqui do que em 3 semestres sozinho.”</p>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Thiago">
+          <div class="testimonial-text">
+            <h4>Thiago</h4>
+            <span>Administração - UNESP</span>
+            <p>“O UniCrossed me deu direção. Hoje sou formado e mentor de alunos na mesma plataforma!”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="final-cta">
+    <h2>Pronto para turbinar seus estudos?</h2>
+    <a href="downloads/UniCrossed-Setup.exe" download class="cta-btn">Baixar o UniCrossed</a>
+  </section>
+
+  <footer class="footer-amazon">
+    <div class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+      Voltar ao topo
+    </div>
+
+    <div class="footer-sections">
+      <div class="footer-col">
+        <h4>Conheça o UniCrossed</h4>
+        <ul>
+          <li><a href="{% url 'sobre_nos' %}">Sobre nós</a></li>
+          <li><a href="{% url 'como_funciona' %}">Como funciona</a></li>
+          <li><a href="{% url 'blog' %}">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ajuda e Suporte</h4>
+        <ul>
+          <li><a href="{% url 'duvidas_frequentes' %}">Dúvidas frequentes</a></li>
+          <li><a href="{% url 'fale_conosco' %}">Fale conosco</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Privacidade e Termos</h4>
+        <ul>
+          <li><a href="{% url 'privacidade' %}">Política de Privacidade</a></li>
+          <li><a href="{% url 'termos' %}">Termos de uso</a></li>
+          <li><a href="{% url 'cookies' %}">Cookies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conecte-se</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/UniCrossed" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> Instagram</a>
+          </li>
+
+          <li><a href="https://www.linkedin.com/in/seu_usuario" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin"></i> LinkedIn</a>
+          </li>
+
+          <li><a href="https://github.com/seu_usuario" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i> GitHub</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <p>© UniCrossed 2025. Todos os direitos reservados.</p>
+      <div class="footer-creators">
+        <strong>Nossos Criadores:</strong>
+        <span>Kauã Filipe Spezia · Yan Maul · Leonardo Marcolin · Erik Santana · Matheus Rudiguer</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

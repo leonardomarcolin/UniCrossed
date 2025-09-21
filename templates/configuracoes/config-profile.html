@@ -1,0 +1,513 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Perfil - UniCrossed.com</title>
+  <link rel="icon" href="{% static 'img/home/UniCrossed_Logo.jpg' %}" type="image/x-icon" />
+  <link rel="stylesheet" href="{% static 'css/global-vars.css' %}/" />
+  <link rel="stylesheet" href="{% static 'css/configuracoes/config-profile.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <video autoplay muted loop class="video-bg">
+    <source src="{% static 'videos/config/config.mp4' %}" type="video/mp4">
+  </video>
+
+  <div class="profile-container">
+    <!-- Enhanced Header -->
+    <div class="profile-header">
+      <button class="btn-voltar" onclick="history.back()" aria-label="Voltar para página anterior">
+        <i class="fa-solid fa-arrow-left"></i> Voltar
+      </button>
+
+      <nav class="breadcrumb">
+        <span>UniCrossed</span>
+        <i class="fa-solid fa-angle-right"></i>
+        <span class="current">Meu Perfil</span>
+      </nav>
+
+      <h1><i class="fa-solid fa-user-circle"></i> Configurar Meu Perfil</h1>
+      <p class="header-subtitle">Configure como outros estudantes te veem na plataforma</p>
+    </div>
+
+    <!-- Profile Completion Progress -->
+    <div class="profile-progress">
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-info">
+          <span class="progress-text">Perfil completo: <span id="progressPercentage">0%</span></span>
+          <span class="progress-tip" id="progressTip">Complete seu perfil para mais matches!</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PERSONAL INFORMATION -->
+    <section class="profile-section" data-section="personal">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-user"></i> Informações Pessoais</h2>
+        <span class="section-required">Obrigatório</span>
+      </div>
+
+      <!-- Profile Picture with Enhanced Upload -->
+      <div class="profile-item vertical profile-picture-section">
+        <label>Foto do Perfil</label>
+        <div class="profile-upload-area" id="profileUploadArea">
+          <div class="profile-preview-container">
+            <div class="profile-preview" id="profilePreview">
+              {% if user.get_foto_perfil %}
+              <img src="{{ user.get_foto_perfil.imagem.url }}" alt="Sua foto" id="profileImage">
+              {% else %}
+              <img src="{% static 'img/home/pfp.jpg' %}" alt="Foto padrão" id="profileImage">
+              {% endif %}
+              <div class="upload-overlay">
+                <i class="fa-solid fa-camera"></i>
+                <span>Alterar Foto</span>
+              </div>
+            </div>
+            <div class="upload-actions">
+              <input type="file" id="photoInput" accept="image/*" style="display: none;" multiple>
+              <button type="button" class="btn-upload" id="uploadBtn">
+                <i class="fa-solid fa-upload"></i> Enviar Nova Foto
+              </button>
+              <button type="button" class="btn-remove" id="removePhotoBtn">
+                <i class="fa-solid fa-trash"></i> Remover
+              </button>
+            </div>
+          </div>
+          <input type="file" id="profilePicture" accept="image/*" hidden>
+        </div>
+        <div class="upload-requirements">
+          <small><i class="fa-solid fa-info-circle"></i> JPG, PNG ou GIF. Máximo 5MB. Recomendado: 300x300px</small>
+        </div>
+      </div>
+
+      <!-- Basic Info -->
+      <div class="name-fields-container">
+        <div class="profile-item vertical">
+          <label for="primeiroNome">Primeiro Nome <span class="required">*</span></label>
+          <input type="text" id="primeiroNome" placeholder="Ex: João" required minlength="2" maxlength="25">
+          <span class="field-error" id="primeiroNomeError"></span>
+        </div>
+
+        <div class="profile-item vertical">
+          <label for="sobrenome">Sobrenome <span class="required">*</span></label>
+          <input type="text" id="sobrenome" placeholder="Ex: Silva" required minlength="2" maxlength="25">
+          <span class="field-error" id="sobrenomeError"></span>
+        </div>
+      </div>
+
+      <div class="profile-item vertical">
+        <label for="email">Email <span class="required">*</span></label>
+        <input type="email" id="email" placeholder="seu.email@exemplo.com" required>
+        <span class="field-error" id="emailError"></span>
+        <small class="field-help">Seu email não será mostrado publicamente</small>
+      </div>
+
+      <div class="profile-item vertical">
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" placeholder="(11) 91234-5678" pattern="\(\d{2}\)\s\d{4,5}-\d{4}">
+        <span class="field-error" id="telefoneError"></span>
+        <small class="field-help">Opcional - Para contato direto</small>
+      </div>
+    </section>
+
+    <!-- ENHANCED PASSWORD SECURITY -->
+    <section class="profile-section" data-section="security">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-shield-halved"></i> Segurança da Conta</h2>
+        <span class="section-required">Obrigatório</span>
+      </div>
+
+      <div class="profile-item vertical">
+        <label for="senhaAtual">Senha Atual <span class="required">*</span></label>
+        <div class="password-input-container">
+          <input type="password" id="senhaAtual" placeholder="Digite sua senha atual" required>
+          <button type="button" class="password-toggle" data-target="senhaAtual">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+        <span class="field-error" id="senhaAtualError"></span>
+      </div>
+
+      <div class="profile-item vertical">
+        <label for="novaSenha">Nova Senha <span class="required">*</span></label>
+        <div class="password-input-container">
+          <input type="password" id="novaSenha" placeholder="Crie uma senha forte e segura" minlength="12" required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$">
+          <button type="button" class="password-toggle" data-target="novaSenha">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+
+        <!-- Password Strength Meter -->
+        <div class="password-strength" id="passwordStrength" style="display: none;">
+          <div class="strength-bars">
+            <div class="strength-bar" id="strengthBar1"></div>
+            <div class="strength-bar" id="strengthBar2"></div>
+            <div class="strength-bar" id="strengthBar3"></div>
+            <div class="strength-bar" id="strengthBar4"></div>
+          </div>
+          <span class="strength-text" id="strengthText">Força da senha</span>
+        </div>
+
+        <!-- Password Requirements -->
+        <div class="password-requirements" id="passwordRequirements" style="display: block;">
+          <div class="requirements-header">
+            <i class="fa-solid fa-shield-alt"></i>
+            <strong>Sua senha deve conter:</strong>
+          </div>
+          <small class="requirement" id="req-length">
+            <i class="fa-solid fa-circle-xmark"></i> Pelo menos 12 caracteres
+          </small>
+          <small class="requirement" id="req-lowercase">
+            <i class="fa-solid fa-circle-xmark"></i> Pelo menos 1 letra minúscula (a-z)
+          </small>
+          <small class="requirement" id="req-uppercase">
+            <i class="fa-solid fa-circle-xmark"></i> Pelo menos 1 letra maiúscula (A-Z)
+          </small>
+          <small class="requirement" id="req-number">
+            <i class="fa-solid fa-circle-xmark"></i> Pelo menos 1 número (0-9)
+          </small>
+          <small class="requirement" id="req-special">
+            <i class="fa-solid fa-circle-xmark"></i> Pelo menos 1 caractere especial (@$!%*?&)
+          </small>
+          <div class="security-tip">
+            <i class="fa-solid fa-lightbulb"></i>
+            <small><strong>Dica de Segurança:</strong> Use uma combinação única de palavras, números e símbolos. Evite
+              informações pessoais óbvias.</small>
+          </div>
+        </div>
+        <span class="field-error" id="novaSenhaError"></span>
+      </div>
+
+      <div class="profile-item vertical">
+        <label for="confirmarSenha">Confirmar Nova Senha <span class="required">*</span></label>
+        <div class="password-input-container">
+          <input type="password" id="confirmarSenha" placeholder="Digite a senha novamente" required>
+          <button type="button" class="password-toggle" data-target="confirmarSenha">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+        <span class="field-error" id="confirmarSenhaError"></span>
+      </div>
+
+      <!-- Two-Factor Authentication Option -->
+      <div class="profile-item security-feature">
+        <div class="security-option">
+          <div class="security-icon">
+            <i class="fa-solid fa-mobile-screen"></i>
+          </div>
+          <div class="security-content">
+            <h4>Autenticação de Dois Fatores</h4>
+            <p>Adicione uma camada extra de segurança à sua conta</p>
+          </div>
+          <div class="security-toggle">
+            <input type="checkbox" id="twoFactor">
+            <label for="twoFactor" class="toggle-switch">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIO SECTION -->
+    <section class="profile-section" data-section="bio">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-quote-left"></i> Sobre Você</h2>
+        <span class="section-recommended">Recomendado</span>
+      </div>
+
+      <div class="profile-item vertical bio-section">
+        <label for="bio">Sua Bio</label>
+        <textarea id="bio" name="bio" value="{{ user.bio }}"
+          placeholder="Conte um pouco sobre você! O que estuda? Quais seus interesses? Como gosta de estudar? Esta bio será exibida no seu perfil para outros estudantes."
+          maxlength="500" rows="4"></textarea>
+        <div class="bio-counter">
+          <small id="bioCount">{{ user.bio|length }}</small>/500 caracteres
+        </div>
+        <small class="field-help">
+          <i class="fa-solid fa-lightbulb"></i>
+          Dica: Uma bio interessante ajuda outros estudantes a te conhecer melhor!
+        </small>
+      </div>
+
+      <div class="academic-info">
+        <div class="profile-item vertical">
+          <label for="instituicao">Instituição <span class="required">*</span></label>
+          <input type="text" id="instituicao" value="{{ user.universidade_nome }}"
+            placeholder="Digite para buscar a universidade..." required>
+          <div class="autocomplete-dropdown" id="universidadeDropdown"></div>
+          <span class="field-error" id="instituicaoError"></span>
+        </div>
+
+        <div class="profile-item vertical">
+          <label for="curso">Curso <span class="required">*</span></label>
+          <input type="text" id="curso" value="{{ user.curso }}" placeholder="Digite para buscar o curso..." required>
+          <div class="autocomplete-dropdown" id="cursoDropdown"></div>
+          <span class="field-error" id="cursoError"></span>
+        </div>
+
+        <div class="profile-item vertical">
+          <label for="semestre">Período/Semestre <span class="required">*</span></label>
+          <input type="number" id="semestre" value="{{ user.semestre }}" min="1" max="12" placeholder="Ex: 5" required>
+          <span class="field-error" id="semestreError"></span>
+        </div>
+      </div>
+      <!-- Academic Info -->
+      <div class="academic-info">
+        <div class="profile-item vertical">
+          <label for="universidade_nome">Instituição atual</label>
+          <!-- CORREÇÃO: Mudando name="nome_universidade" para name="universidade_nome" -->
+          <input type="text" id="universidade_nome" name="universidade_nome" value="{{ user.universidade_nome }}"
+            readonly>
+        </div>
+        <div class="profile-item vertical">
+          <label for="curso">Curso atual</label>
+          <input type="text" id="curso" name="curso" value="{{ user.curso }}" readonly>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS/EXPERTISE TAGS -->
+    <section class="profile-section" data-section="skills">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-star"></i> Suas Especialidades</h2>
+        <span class="section-recommended">Recomendado</span>
+      </div>
+
+      <div class="skills-explanation">
+        <div class="explanation-card">
+          <i class="fa-solid fa-info-circle"></i>
+          <div>
+            <h4>Em que você pode ajudar?</h4>
+            <p>Adicione matérias e temas que você domina bem. Isso ajuda outros estudantes a te encontrarem quando
+              precisarem de ajuda!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-item vertical skills-section">
+        <label>Matérias que você domina</label>
+        <div class="tags-input-container">
+          <div class="tags-list" id="skillsTags"></div>
+          <input type="text" id="skillsInput" placeholder="Digite uma matéria e pressione Enter">
+        </div>
+        <input type="hidden" id="skills" name="skills">
+
+        <!-- Quick Suggestions -->
+        <div class="suggestions-section">
+          <label class="suggestions-label">Sugestões populares:</label>
+          <div class="suggestions" id="skillsSuggestions">
+            <!-- General subjects -->
+            <span class="suggestion-tag" data-tag="Matemática">Matemática</span>
+            <span class="suggestion-tag" data-tag="Física">Física</span>
+            <span class="suggestion-tag" data-tag="Química">Química</span>
+            <span class="suggestion-tag" data-tag="Biologia">Biologia</span>
+            <span class="suggestion-tag" data-tag="História">História</span>
+            <span class="suggestion-tag" data-tag="Geografia">Geografia</span>
+            <span class="suggestion-tag" data-tag="Português">Português</span>
+            <span class="suggestion-tag" data-tag="Inglês">Inglês</span>
+
+            <!-- Programming/Tech -->
+            <span class="suggestion-tag" data-tag="Programação">Programação</span>
+            <span class="suggestion-tag" data-tag="JavaScript">JavaScript</span>
+            <span class="suggestion-tag" data-tag="Python">Python</span>
+            <span class="suggestion-tag" data-tag="Java">Java</span>
+            <span class="suggestion-tag" data-tag="HTML/CSS">HTML/CSS</span>
+            <span class="suggestion-tag" data-tag="Banco de Dados">Banco de Dados</span>
+
+            <!-- University specific -->
+            <span class="suggestion-tag" data-tag="Cálculo I">Cálculo I</span>
+            <span class="suggestion-tag" data-tag="Cálculo II">Cálculo II</span>
+            <span class="suggestion-tag" data-tag="Álgebra Linear">Álgebra Linear</span>
+            <span class="suggestion-tag" data-tag="Estruturas de Dados">Estruturas de Dados</span>
+            <span class="suggestion-tag" data-tag="Algoritmos">Algoritmos</span>
+            <span class="suggestion-tag" data-tag="Estatística">Estatística</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- AVAILABILITY PREFERENCES -->
+    <section class="profile-section" data-section="availability">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-calendar-check"></i> Disponibilidade</h2>
+        <span class="section-optional">Opcional</span>
+      </div>
+
+      <div class="availability-grid">
+        <div class="profile-item vertical">
+          <label for="diasDisponiveis">Dias da semana preferidos</label>
+          <div class="days-selector">
+            <label class="day-option">
+              <input type="checkbox" value="segunda" name="dia_semana">
+              <span>Seg</span>
+            </label>
+            <label class="day-option">
+              <input type="checkbox" value="terca" name="dia_semana">
+              <span>Ter</span>
+            </label>
+            <label class="day-option">
+              <input type="checkbox" value="quarta" name="dia_semana">
+              <span>Qua</span>
+            </label>
+            <label class="day-option">
+              <input type="checkbox" value="quinta" name="dia_semana">
+              <span>Qui</span>
+            </label>
+            <label class="day-option">
+              <input type="checkbox" value="sexta" name="dia_semana">
+              <span>Sex</span>
+            </label>
+            <label class="day-option">
+              <input type="checkbox" value="sabado" name="dia_semana">
+              <span>Sáb</span>
+            </label>
+            <label class="day-option">
+              <input type="checkbox" value="domingo" name="dia_semana">
+              <span>Dom</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="profile-item vertical">
+          <label for="horariosPreferidos">Horários preferidos</label>
+          <div class="time-selector">
+            <label class="time-option">
+              <input type="checkbox" value="manha" name="horario">
+              <i class="fa-solid fa-sun"></i>
+              <span>Manhã<small>06h-12h</small></span>
+            </label>
+            <label class="time-option">
+              <input type="checkbox" value="tarde" name="horario">
+              <i class="fa-solid fa-cloud-sun"></i>
+              <span>Tarde<small>12h-18h</small></span>
+            </label>
+            <label class="time-option">
+              <input type="checkbox" value="noite" name="horario">
+              <i class="fa-solid fa-moon"></i>
+              <span>Noite<small>18h-00h</small></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Study Preferences -->
+      <div class="study-preferences">
+        <h3>Como prefere estudar?</h3>
+        <div class="preference-options">
+          <label class="preference-option">
+            <input type="checkbox" name="metodo_preferido" value="online" checked>
+            <div class="option-content">
+              <i class="fa-solid fa-laptop"></i>
+              <span>Estudo Online</span>
+              <small>Video chamadas, chat, etc.</small>
+            </div>
+          </label>
+
+          <label class="preference-option">
+            <input type="checkbox" name="metodo_preferido" value="presencial">
+            <div class="option-content">
+              <i class="fa-solid fa-users"></i>
+              <span>Encontros Presenciais</span>
+              <small>Bibliotecas, cafés, campus</small>
+            </div>
+          </label>
+
+          <label class="preference-option">
+            <input type="checkbox" name="metodo_preferido" value="grupo">
+            <div class="option-content">
+              <i class="fa-solid fa-user-group"></i>
+              <span>Grupos de Estudo</span>
+              <small>Estudar com várias pessoas</small>
+            </div>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTION BUTTONS -->
+    <div class="form-actions">
+      <button type="button" class="btn-secondary" id="previewProfile">
+        <i class="fa-solid fa-eye"></i>
+        Visualizar Perfil
+      </button>
+
+      <button type="button" class="btn-secondary" id="resetForm">
+        <i class="fa-solid fa-undo"></i>
+        Resetar Alterações
+      </button>
+
+      <button type="submit" class="btn-primary" id="saveProfile">
+        <i class="fa-solid fa-save"></i>
+        Salvar Perfil
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="loading-spinner">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      <p>Salvando seu perfil...</p>
+    </div>
+  </div>
+
+  <!-- Profile Preview Modal -->
+  <div class="modal-overlay" id="previewModal" style="display: none;">
+    <div class="preview-modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-eye"></i> Pré-visualização do Perfil</h3>
+        <button class="modal-close" id="closePreview">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-content" id="previewContent">
+        <!-- Profile preview will be generated here -->
+      </div>
+    </div>
+  </div>
+
+  <script id="preferencias-data" type="application/json">
+{
+    "dia_semana": {{ preferencias.dia_semana|default:"[]"|safe }},
+    "horario": {{ preferencias.horario|default:"[]"|safe }},
+    "metodo_preferido": {{ preferencias.metodo_preferido|default:"[]"|safe }}
+}
+</script>
+  <script src="{% static 'js/configuracoes/checagem_senhas.js' %}"></script>
+  <script src="{% static 'js/configuracoes/config-profile.js' %}"></script>
+  <script src="{% static 'js/configuracoes/pegar_universidade.js' %}"></script>
+  <script src="{% static 'js/configuracoes/2fa-manager.js' %}"></script>
+  <!-- <script src="{% static 'js/configuracoes/validacao_e_senha.js' %}"></script> -->
+  <script src="{% static 'js/configuracoes/form_editar.js' %}"></script>
+
+  <style>
+    /* Name fields side by side styling */
+    .name-fields-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .name-fields-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+    }
+  </style>
+</body>
+
+</html>

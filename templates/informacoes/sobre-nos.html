@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nós | UniCrossed.com</title>
+    <link rel="icon" href="{% static 'img/home/UniCrossed_Logo.jpg' %}" />
+    <link rel="stylesheet" href="{% static 'css/informacoes/sobre-nos.css' %}" />
+</head>
+
+<body>
+    <img class="logo" src="{% static 'img/home/UniCrossed_Logo.jpg' %}" alt="logo">
+    <div class="container">
+        <div class="config-topbar">
+            <button class="btn-voltar" onclick="history.back()">
+                <i class="fa-solid fa-arrow-left"></i> Voltar
+            </button>
+            <h1><i class="fa-solid fa-gear"></i> Sobre Nós </h1>
+        </div>
+        <p>Ei, tudo bem? Nós somos a <strong>UniCrosed</strong> e estamos aqui pra transformar a sua vida universitária
+            em algo ainda mais incrível.</p>
+        <p>Sabemos que a faculdade não é só prova, trabalho e correria. É também sobre fazer amigos, trocar ideias,
+            aprender coisas novas (dentro e fora da sala de aula) e construir o seu futuro. Por isso, criamos um espaço
+            onde universitários de todas as áreas podem se conectar, bater papo, tirar dúvidas, compartilhar
+            experiências e até se ajudar nos estudos — tudo de um jeito leve e divertido.</p>
+        <p>Queremos ver você crescendo junto com outras pessoas que entendem seus desafios e que também têm muito a
+            somar. Aqui, cada conversa pode virar uma amizade, uma parceria de estudo ou até abrir portas para
+            oportunidades que você nem imaginava.</p>
+        <p>E não é só sobre alunos, não! Também queremos aproximar as universidades da galera, criando pontes pra
+            eventos, novidades, programas legais e tudo que possa deixar sua vida acadêmica mais completa.</p>
+        <p>Na <strong>UniCrosed</strong>, acreditamos que a jornada universitária fica muito melhor quando é vivida em
+            comunidade. Vem com a gente fazer parte dessa rede e descobrir o quanto aprender, ensinar e se divertir
+            podem andar juntos!</p>
+    </div>
+
+    <!-- NOSSO TIME -->
+    <div class="team-container">
+        <h1>Nosso Time</h1>
+        <div class="team-grid">
+            <div class="team-member" data-name="Kauã Filipe" data-role="Desenvolvedor Front-End"
+                data-description="Apaixonado por tecnologia, design e sempre pronto para aprender coisas novas. Curte café, música e programar interfaces bonitas.">
+                <img src="{% static 'img/integrantes/kaua.jpg' %}" alt="Kauã Filipe">
+                <p>Kauã Filipe</p>
+            </div>
+            <div class="team-member" data-name="Yan Maul" data-role="Product Manager"
+                data-description="Organizado, comunicativo e sempre atento aos detalhes. Gosta de manter tudo funcionando bem no time e curte games e esportes.">
+                <img src="{% static 'img/integrantes/yan.jpg' %}" alt="Yan Maul">
+                <p>Yan Maul</p>
+            </div>
+            <div class="team-member" data-name="Matheus Rudiger" data-role="UX Designer"
+                data-description="Criativo, cheio de ideias e sempre buscando melhorar a experiência do usuário. Ama cinema e música indie.">
+                <img src="{% static 'img/integrantes/matheus.jpg' %}" alt="Matheus Rudiger">
+                <p>Matheus Rudiger</p>
+            </div>
+            <div class="team-member" data-name="Leonardo Ferreira" data-role="Desenvolvedor Back-End"
+                data-description="Focado em código limpo, segurança e performance. Nas horas vagas, curte games, tocar violão e estudar novas tecnologias.">
+                <img src="{% static 'img/integrantes/leo.jpg' %}" alt="Leonardo Marcolin">
+                <p>Leonardo Marcolin</p>
+            </div>
+            <div class="team-member" data-name="Erik Santana" data-role="QA Tester"
+                data-description="Detalhista, paciente e sempre pronto para achar os menores bugs. Gosta de fotografia, séries e cozinhar.">
+                <img src="{% static 'img/integrantes/erik.jpg' %}" alt="Erik Santana">
+                <p>Erik Santana</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" id="closeBtn">&times;</span>
+            <h2 id="modal-name"></h2>
+            <h4 id="modal-role"></h4>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <script src="{% static 'js/informacoes/sobre-nos.js'%}"></script>
+</body>
+
+</html>

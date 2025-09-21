@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - UniCrosed</title>
+  <link rel="stylesheet" href="{% static 'css/informacoes/blog.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="header">
+    <img src="{% static 'img/home/UniCrossed_Logo.jpg' %}" alt="Logo UniCrosed" class="logo" />
+    <h1 class="title">Blog <span class="highlight">UniCrosed</span></h1>
+  </header>
+
+  <main class="blog-container">
+
+    <article class="blog-post">
+      <img src="https://images.unsplash.com/photo-1592188657297-c6473609e988?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Imagem do post" />
+      <div class="post-content">
+        <h2>Como organizar sua rotina universitária sem surtar</h2>
+        <p>Equilibrar estudos, vida pessoal e trabalho pode parecer impossível, mas aqui vão dicas práticas que funcionam de verdade...</p>
+        <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </article>
+
+    <article class="blog-post">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Imagem do post" />
+      <div class="post-content">
+        <h2>5 Técnicas de estudo que realmente funcionam</h2>
+        <p>Você já tentou de tudo, mas nada fica na cabeça? Testamos os melhores métodos para te ajudar a mandar bem nas provas.</p>
+        <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </article>
+
+    <article class="blog-post">
+      <img src="https://plus.unsplash.com/premium_photo-1683887034552-4635692bb57c?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Imagem do post" />
+      <div class="post-content">
+        <h2>Fazer amigos na faculdade: como se enturmar de forma leve</h2>
+        <p>Se conectar com as pessoas certas pode transformar sua experiência universitária. Veja como fazer isso com naturalidade.</p>
+        <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </article>
+
+  </main>
+</body>
+
+</html>

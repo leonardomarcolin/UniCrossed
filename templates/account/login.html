@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <video autoplay muted loop id="videoBG">
+      <source src="{% static 'videos/login/yt.mp4' %}" type="video/mp4">
+  </video>
+
+  <div class="container">
+
+    <div class="itens">
+
+      <h1 class="faca-login">Faça seu Login</h1>
+
+      <form action="{% url 'account_login' %}" method="POST">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="erro">
+            <p>Usuário ou senha incorretos!</p>
+        </div>
+        {% endif %}
+
+        <div class="input-com-icone">
+          <i class="fa fa-envelope"></i>
+          <input type="email" name="login" placeholder="Digite seu E-mail" required>
+        </div>
+
+        <div class="input-com-icone">
+          <i class="fa fa-lock"></i>
+          <input type="password" name="password" placeholder="Digite sua Senha" required>
+        </div>
+
+        <button type="submit" class="butao">Entrar</button>
+      </form>
+
+      <button onclick="window.location.href='{% url 'account_signup' %}'" class="butao2">Criar Conta</button>
+
+      <nav class="nav-link">
+        <a href="{% url 'account_reset_password' %}" class="forgot-btn">Esqueci minha senha</a>
+      </nav>
+    </div>
+  </div>
+</body>
+
+</html>

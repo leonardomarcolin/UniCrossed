@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como Funciona - UniCrossed</title>
+  <link rel="stylesheet" href="{% static 'css/informacoes/como-funciona.css' %}" />
+</head>
+
+<body>
+  <video autoplay muted loop id="videoBG">
+    <source src="{% static 'videos/login/yt.mp4' %}" type="video/mp4">
+  </video>
+
+  <header>
+    <img src="{% static 'img/home/UniCrossed_Logo.jpg' %}" alt="Logo UniCrossed" class="logo" />
+    <button class="btn-voltar" onclick="history.back()">
+      <i class="fa-solid fa-arrow-left"></i> Voltar
+    </button>
+
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>
+      <h1>
+        Como funciona a <span class="uni">Uni</span><span class="crossed">Crossed</span>
+      </h1>
+
+    </h1>
+    <div class="explicacao">
+      <img src="{% static 'img/informacoes/como-funciona.png' %}" alt="Interface UniCrossed"
+        id="imagem-base"/>
+    </div>
+  </div>
+</body>
+
+</html>

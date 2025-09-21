@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro UniCrossed</title>
+    <link rel="stylesheet" href="{% static 'css/account/cadastro.css' %}" />
+    <script defer src="{% static 'js/account/cadastro.js' %}"></script>
+</head>
+
+<body>
+    <video autoplay muted loop id="videoBG">
+        <source src="{% static 'videos/cadastro/videoplayback (1).mp4' %}" type="video/mp4" />
+    </video>
+
+    <div class="container">
+        <div class="itens">
+            <h1 class="cadastro">Tela de cadastro</h1>
+
+            <form action="{% url 'account_signup' %}" method="POST" id="signup-form">
+                {% csrf_token %}
+
+                <!-- STEP 1: Personal Information -->
+                <div id="step-1" class="step active">
+                    <h2 class="informacoes">Nome e Sobrenome</h2>
+                    <div class="linha-inputs">
+                        <input class="intus" type="text" name="primeiro_nome" placeholder="Nome" required />
+                        <input class="intus" type="text" name="ultimo_nome" placeholder="Sobrenome" required />
+                    </div>
+
+                    <h2 class="informacoes">Data de nascimento</h2>
+                    <input class="intus" type="date" name="data_nascimento" required />
+
+                    <label for="genero">Gênero:</label>
+                    <select class="genero" name="genero" id="genero" required>
+                        <option value="homem">Homem</option>
+                        <option value="mulher">Mulher</option>
+                        <option value="prefiro_n_dizer">Prefiro não dizer</option>
+                        <option value="outro">Outro</option>
+                    </select>
+
+                    <!-- Campo personalizado para gênero "Outro" -->
+                    <div id="genero-customizado-container" style="display: none; margin-top: 10px;">
+                        <input class="intus" type="text" name="genero_customizado" id="genero-customizado"
+                            placeholder="Especifique seu gênero" maxlength="20" />
+                    </div>
+
+                    <h2 class="informacoes">E-mail</h2>
+                    <input class="intus" type="email" name="email" placeholder="exemplo@gmail.com" required />
+
+                    <h2 class="informacoes">Senha</h2>
+                    <input class="intus" type="password" name="password1"
+                        placeholder="Número - Símbolo - Letra minúscula - Letra maiúscula" required />
+
+                    <h2 class="informacoes">Confirmar senha</h2>
+                    <input class="intus" type="password" name="password2" placeholder="Digite novamente" required />
+
+                    <div class="termos-container">
+                        <div class="aceitar-termos">
+                            <input type="checkbox" id="termo" class="termo" required />
+                            <label for="termo">
+                                Eu li e aceito os →
+                                <span class="botaoTermos" role="button" tabindex="0"
+                                    style="color:#347cfc; cursor:pointer; text-decoration:underline;">
+                                    termos de contrato
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                {% if form.errors %}
+                <ul class="form-errors" style="color: red; margin-bottom: 1em; display: none;">
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <li><strong>Erro ao cadastrar o/a {{ field.label.lower }}:</strong> {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <div id="form-error" style="display: none; color: red; margin-bottom: 1em;">
+                    Por favor, preencha todos os campos obrigatórios.
+                </div>
+
+                <div id="step-2" class="step">
+                    <h2 class="informacoes">Selecione seu Estado</h2>
+                    <select class="intus2" name="estado" id="estado" required>
+                        <option value="">Carregando estados...</option>
+                    </select>
+
+                    <h2 class="informacoes">Selecione sua Cidade</h2>
+                    <select class="intus2" name="cidade" id="cidade" required>
+                        <option value="">Selecione um estado primeiro</option>
+                    </select>
+
+                    <h2 class="informacoes">Selecione a Universidade</h2>
+                    <select class="intus2" name="universidade" id="universidade" required>
+                        <option value="">Selecione uma cidade primeiro</option>
+                    </select>
+
+                    <h2 class="informacoes">Selecione o Curso</h2>
+                    <select class="intus2" name="curso" id="curso" required>
+                        <option value="">Selecione uma universidade primeiro</option>
+                    </select>
+
+                    <button class="botao" id="btnCadastrar" disabled>Cadastrar</button>
+                </div>
+                <div class="form-footer">
+                    <button type="button" class="botao" id="btn-continuar">Continuar</button>
+                    <nav class="nav-pequena">
+                        <span onclick="window.location.href='{% url 'account_login' %}'" class="ja-tenho-conta-link">Já
+                            tenho conta</span>
+                    </nav>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalTermos" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h1>Termos e Condições de Uso</h1>
+            <p>Bem-vindo ao UniCrossed, uma plataforma de networking acadêmico voltada para estudantes
+                universitários que desejam trocar conhecimentos, se conectar com colegas e formar grupos de
+                estudos com base em interesses e formações em comum.</p>
+
+            <h2>1. Aceitação dos Termos</h2>
+            <p>Ao criar uma conta ou utilizar qualquer funcionalidade do UniCrossed, você concorda com os
+                presentes Termos e Condições de Uso. Se não concordar, por favor, não utilize o site.</p>
+
+            <h2>2. Descrição da Plataforma</h2>
+            <p>O UniCrossed oferece funcionalidades como:</p>
+            <ul>
+                <li>Conexões entre usuários (match) com base em cursos, universidades e áreas de interesse;
+                </li>
+                <li>Criação de grupos de estudos ("MultiLinked");</li>
+                <li>Compartilhamento de conhecimentos acadêmicos entre usuários conectados;</li>
+                <li>Mensagens diretas e sistema de notificações.</li>
+            </ul>
+
+            <h2>3. Responsabilidades do Usuário</h2>
+            <ul>
+                <li>Fornecer informações verdadeiras sobre sua identidade, curso e universidade;</li>
+                <li>Utilizar a plataforma de forma ética e respeitosa com os demais usuários;</li>
+                <li>Não compartilhar conteúdos ofensivos, preconceituosos, plagiados ou que violem direitos
+                    autorais;</li>
+                <li>Não utilizar o UniCrossed para fins comerciais ou promocionais não autorizados.</li>
+            </ul>
+
+            <h2>4. Privacidade e Dados</h2>
+            <p>As informações fornecidas pelos usuários serão utilizadas exclusivamente para personalizar
+                conexões dentro da plataforma. Não compartilhamos seus dados com terceiros sem
+                consentimento, exceto quando exigido por lei.</p>
+
+            <h2>5. Propriedade Intelectual</h2>
+            <p>Todo o conteúdo, layout, logotipo e funcionalidades do UniCrossed são propriedade exclusiva
+                da equipe do projeto e protegidos por direitos autorais. É proibida a reprodução sem
+                autorização.</p>
+
+            <h2>6. Suspensão de Conta</h2>
+            <p>Reservamo-nos o direito de suspender ou excluir contas que violem estes termos, especialmente
+                em casos de má conduta, uso indevido da plataforma ou fornecimento de informações falsas.
+            </p>
+
+            <h2>7. Alterações nos Termos</h2>
+            <p>Podemos atualizar estes termos periodicamente. Recomendamos que o usuário revise esta página
+                com frequência. O uso contínuo da plataforma após alterações implica aceitação automática
+                das novas condições.</p>
+
+            <h2>8. Contato</h2>
+            <p>Em caso de dúvidas, sugestões ou denúncias, entre em contato pelo e-mail:
+                <strong>suporte@unicrossed.com</strong>.
+            </p>
+
+            <footer>© 2025 UniCrossed. Todos os direitos reservados.</footer>
+
+            <button id="fecharModal" class="botao-fechar">Voltar</button>
+        </div>
+    </div>
+</body>
+
+</html>

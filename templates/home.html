@@ -1,0 +1,642 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1." />
+    <title>UniCrossed.com | Unindo conhecimento com networking</title>
+    <link rel="icon" href="{% static 'img/home/UniCrossed_Logo.jpg' %}" />
+    <link rel="stylesheet" href="{% static 'css/home/home.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <div class="logo-circle">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+
+            <div class="loading-content">
+                <h2 class="loading-title">UniCrossed</h2>
+                <p class="loading-subtitle">Conectando conhecimento através de networking</p>
+
+                <div class="loading-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Carregando...</div>
+                </div>
+            </div>
+
+            <div class="loading-animation">
+                <div class="pulse-ring pulse-ring-1"></div>
+                <div class="pulse-ring pulse-ring-2"></div>
+                <div class="pulse-ring pulse-ring-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if fim %}
+        <!-- When no more profiles available - Show user's own profile -->
+        <div class="content1">
+            <header>
+                {% if user.is_authenticated %}
+                <div class="perfil" onclick="window.location.href='configuracoes/user-profile'"
+                    style="cursor: pointer;" title="Clique para ver seu perfil">
+                    <img src="{% static 'img/home/pfp.jpg' %}" alt="Sua foto de perfil">
+                </div>
+                <p class="nomeUser" id="displayName">{{ user.first_name }} {{ user.last_name }}</p>
+                {% else %}
+                <meta http-equiv="refresh" content="{% url 'landingpage' %}">
+                {% endif %}
+            </header>
+            <div class="informations">
+                <div class="userCardInfo">
+                    <div class="userCardAvatar"> <img src="{% static 'img/home/pfp.jpg' %}" alt=""></div>
+                    <div class="userCardDetails">
+                        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                        <p class="userCardLocation">
+                            <i class="fa-solid fa-location-dot"></i>
+                            {% if user.cidade %}{{ user.cidade|title }}, {{ user.estado|upper }}{% else %}Localização
+                            não informada{% endif %}
+                        </p>
+                        <p class="userCardBio">
+                        <p>Cursando {{ user.curso }} na {{ user.universidade_nome }}</p>
+                        <p>{% if user.bio %}{{ user.bio|capfirst }}{% else %}Biografia não informada{% endif %}</p>
+                        </p>
+                        <div class="userCardTags">
+                            {% for habilidade in user.habilidades.all %}
+                            <span>#{{ habilidade }}</span>
+                            {% empty %}
+                            <span>Nenhuma habilidade cadastrada</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icons">
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Parabéns!</h4>
+                        <p>Você já interagiu com todos os perfis disponíveis</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4>Próximos passos</h4>
+                    <p>Verifique seus matches e continue conversando!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Replace middle section with "no more profiles" message -->
+        <div class="content2 no-profiles-container">
+            <!-- Left Button -->
+            <a href="{% url 'configuracoes' %}" class="no-profiles-btn no-profiles-btn-left">
+                <i class="fas fa-cog"></i>
+                <span>Configurações</span>
+            </a>
+
+            <!-- Center Text -->
+            <div class="no-profiles-text">
+                <h2 class="no-profiles-title">Não há mais perfis para mostrar no momento.</h2>
+                <p class="no-profiles-subtitle">Você já interagiu com todos os usuários disponíveis.<br>Volte mais tarde
+                    para encontrar novos perfis!</p>
+            </div>
+
+            <!-- Right Button -->
+            <a href="{% url 'linkeds' %}" class="no-profiles-btn no-profiles-btn-right">
+                <i class="fas fa-link"></i>
+                <span>Ver Links</span>
+            </a>
+        </div>
+
+        <div class="content3">
+            <header class="headerRight">
+                <p>DIRECT</p>
+                <div class="chatsIcon" id="toggleChat"><i class="fa-solid fa-comments"></i></div>
+            </header>
+
+            <div class="chatList" id="chatList">
+                <div class="directBox">
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Kevin</p>
+                                <span class="time">21:45</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Ei, tudo bem?</p>
+                                <span class="status unread"></span>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Lana</p>
+                                <span class="time">20:22</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Haha, gostei disso</p>
+                                <span class="status"></span>
+                                <span class="offline"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Amanda</p>
+                                <span class="time">20:12</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Vamos conversar depois?</p>
+                                <span class="status unread"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Lucas</p>
+                                <span class="time">18:50</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Enviou um vídeo</p>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Isabela</p>
+                                <span class="time">16:35</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">kkkkkk</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="content1">
+            <header>
+                {% if user.is_authenticated %}
+                <div class="perfil" onclick="window.location.href='configuracoes/user-profile'"
+                    style="cursor: pointer;" title="Clique para ver seu perfil">
+                    <img src="{% static 'img/home/pfp.jpg' %}" alt="Sua foto de perfil">
+                </div>
+                <p class="nomeUser" id="displayName">{{ user.first_name }} {{ user.last_name }}</p>
+                {% else %}
+                <meta http-equiv="refresh" content="0; url=/accounts/login/">
+                {% endif %}
+            </header>
+            <div class="informations">
+                <div class="userCardInfo">
+                    <div class="userCardAvatar"> <img src="{% static 'img/home/pfp.jpg' %}" alt=""></div>
+                    <div class="userCardDetails">
+                        <h2>{{ perfil.first_name }} {{ perfil.last_name }}</h2>
+                        <p class="userCardLocation">
+                            <i class="fa-solid fa-location-dot"></i>
+                            {{ perfil.cidade|title }}, {{ perfil.estado|upper }}
+                        </p>
+                        <div class="userCardBio">
+                            {% if perfil.bio %}
+                        <p>Cursando {{ perfil.curso }} na {{ perfil.universidade_nome }}</p>
+                        <p>{{ perfil.bio|capfirst }}</p>
+                        {% else %}
+                        <p>Biografia não informada</p>
+                        {% endif %}
+                        </div>
+                        <div class="userCardTags">
+                            {% if perfil.habilidades %}
+                            {% for habilidade in perfil.habilidades.all %}
+                            <span>#{{ habilidade }}</span>
+                            {% endfor %}
+                            {% else %}
+                            <span>Nenhuma habilidade cadastrada</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icons">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-comment"></i>
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Atividades</h4>
+                        <p>5 curtidas, 2 comentários, 1 match</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4>Resumo</h4>
+                    <p>12 interações hoje. Continue assim!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content2" id="cardContainer">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+            <nav class="menu">
+                <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+                <label class="menu-open-button" for="menu-open">
+                    <span class="hamburger hamburger-1"></span>
+                    <span class="hamburger hamburger-2"></span>
+                    <span class="hamburger hamburger-3"></span>
+                </label>
+
+                <a href="#" class="menu-item" onclick="window.location.href='{% url 'configuracoes' %}'">
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+                <a href="#" class="menu-item"> <i class="fa fa-plus"></i> </a>
+                <a href="{% url 'linkeds' %}" class="menu-item"> <i class="fa-solid fa-link"></i></a>
+                <a href="#" class="menu-item"> <i class="fa fa-envelope"></i> </a>
+            </nav>
+
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <filter id="shadowed-goo">
+                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                            result="goo" />
+                        <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+                        <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2"
+                            result="shadow" />
+                        <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+                        <feComposite in2="shadow" in="goo" result="goo" />
+                        <feComposite in2="goo" in="SourceGraphic" result="mix" />
+                    </filter>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                            result="goo" />
+                        <feComposite in2="goo" in="SourceGraphic" result="mix" />
+                    </filter>
+                </defs>
+            </svg>
+
+            <div class="card">
+                <div class="slider">
+                    <div class="list">
+                        <div class="item">
+                            <img src="{% static 'img/home/1.jpg' %}" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="{% static 'img/home/2.jpg' %}" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="{% static 'img/home/3.jpg' %}" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="{% static 'img/home/4.jpg' %}" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="{% static 'img/home/5.jpg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="prev"><i class="fas fa-angle-left"></i></button>
+                        <button class="next"><i class="fas fa-angle-right"></i></button>
+                    </div>
+                    <ul class="dots">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="floating-actions">
+                    <button id="dislikeBtn" class="floating-btn" onclick="dislike()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button id="superlikeBtn" class="floating-btn" onclick="superlike()">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                    <button id="likeBtn" class="floating-btn" onclick="like()">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content3">
+            <header class="headerRight">
+                <p>DIRECT</p>
+                <div class="chatsIcon" id="toggleChat"><i class="fa-solid fa-comments"></i></div>
+            </header>
+
+            <div class="chatList" id="chatList">
+                <div class="directBox">
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Kevin</p>
+                                <span class="time">21:45</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Ei, tudo bem?</p>
+                                <span class="status unread"></span>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Lana</p>
+                                <span class="time">20:22</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Haha, gostei disso</p>
+                                <span class="status"></span>
+                                <span class="offline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Kevin</p>
+                                <span class="time">21:45</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Ei, tudo bem?</p>
+                                <span class="status unread"></span>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Amanda</p>
+                                <span class="time">20:12</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Vamos conversar depois?</p>
+                                <span class="status unread"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Lucas</p>
+                                <span class="time">18:50</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Enviou um vídeo</p>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Isabela</p>
+                                <span class="time">16:35</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">kkkkkk</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Kevin</p>
+                                <span class="time">21:45</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Ei, tudo bem?</p>
+                                <span class="status unread"></span>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Lana</p>
+                                <span class="time">20:22</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Haha, gostei disso</p>
+                                <span class="status"></span>
+                                <span class="offline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Kevin</p>
+                                <span class="time">21:45</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Ei, tudo bem?</p>
+                                <span class="status unread"></span>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Amanda</p>
+                                <span class="time">20:12</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Vamos conversar depois?</p>
+                                <span class="status unread"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Lucas</p>
+                                <span class="time">18:50</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Enviou um vídeo</p>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Isabela</p>
+                                <span class="time">16:35</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">kkkkkk</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Bruno</p>
+                                <span class="time">19:05</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Vamos sair amanhã?</p>
+                                <span class="status unread"></span>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Camila</p>
+                                <span class="time">18:40</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Amei sua playlist!</p>
+                                <span class="status unread"></span>
+                                <span class="offline"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Felipe</p>
+                                <span class="time">17:30</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">To ouvindo aquela música...</p>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Laura</p>
+                                <span class="time">16:22</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Gostei do seu perfil :)</p>
+                                <span class="status unread"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Rafael</p>
+                                <span class="time">15:10</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Curti aquele som!</p>
+                                <span class="online"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <img src="{% static 'img/home/pfp.jpg' %}" alt="User" />
+                        <div class="chatInfo">
+                            <div class="chatTop">
+                                <p class="chatName">Beatriz</p>
+                                <span class="time">14:50</span>
+                            </div>
+                            <div class="chatBottom">
+                                <p class="lastMsg">Podemos conversar?</p>
+                                <span class="status unread"></span>
+                                <span class="offline"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <script>
+        window.APP_CONFIG = {
+            currentProfileId: "{{ perfil.id|default:'' }}",
+            csrfToken: "{{ csrf_token }}",
+            userId: "{{ user.id|default:'' }}",
+        };
+        console.log('CSRF Token:', window.APP_CONFIG.csrfToken);
+        console.log('Profile ID:', window.APP_CONFIG.currentProfileId);
+    </script>
+    <script src="{% static 'js/home/main.js' %}"></script>
+    <script src="{% static 'js/home/ui/botoes.js' %}"></script>
+    <script src="{% static 'js/home/ui/notificacoes.js' %}"></script>
+    <script src="{% static 'js/home/ui/particulas.js' %}"></script>
+    <script src="{% static 'js/home/api/perfis.js' %}"></script>
+    <script src="{% static 'js/home/api/interacoes.js' %}"></script>
+    <script src="{% static 'js/home/ui/loading.js' %}"></script>
+    <script src="{% static 'js/home/carrosel.js' %}"></script>
+</body>
+
+</html>

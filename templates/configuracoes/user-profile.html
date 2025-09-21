@@ -1,0 +1,230 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil do Usuário - UniCrossed.com</title>
+  <link rel="icon" href="{% static 'img/home/UniCrossed_Logo.jpg' %}" type="image/x-icon" />
+  <link rel="stylesheet" href="{% static 'css/configuracoes/user-profile.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/global-vars.css' %}/" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <video autoplay muted loop class="video-bg">
+    <source src="Background.mp4" type="video/mp4">
+  </video>
+
+  <div class="profile-container">
+    <!-- Header with Back Button -->
+    <div class="profile-header">
+      <button class="btn-voltar" onclick="history.back()" aria-label="Voltar para página anterior">
+        <i class="fa-solid fa-arrow-left"></i> Voltar
+      </button>
+
+      <nav class="breadcrumb">
+        <span>UniCrossed</span>
+        <i class="fa-solid fa-angle-right"></i>
+        <span class="current">Perfil</span>
+      </nav>
+    </div>
+
+    <!-- Profile Display Card -->
+    <div class="profile-card">
+      <!-- Floating Bubble Menu (Only for Own Profile) - Top Right -->
+      <nav class="profile-menu" id="profileMenu">
+        <input type="checkbox" href="#" class="menu-open" name="profile-menu-open" id="profile-menu-open" />
+        <label class="menu-open-button" for="profile-menu-open">
+          <span class="hamburger hamburger-1"></span>
+          <span class="hamburger hamburger-2"></span>
+          <span class="hamburger hamburger-3"></span>
+        </label>
+
+        <a href="#" class="menu-item" title="Editar Perfil" onclick="window.location.href='{% url 'config-profile' %}'">
+          <i class="fa-solid fa-edit"></i>
+        </a>
+        <button class="menu-item logout-item" onclick="document.getElementById('logoutForm').submit();" title="Sair da Conta">
+          <i class="fa-solid fa-sign-out-alt"></i>
+        </button>
+      </nav>
+
+      <!-- Profile Picture and Basic Info -->
+      <div class="profile-main">
+        <div class="profile-avatar">
+          <img src="{{ user.foto_perfil.url|default:'/static/img/home/pfp.jpg' }}" alt="Foto do perfil" id="profileImage">
+          <div class="profile-status online" title="Online agora"></div>
+        </div>
+
+        <div class="profile-info">
+          <div class="profile-name-section">
+            <h1 class="profile-name" id="profileName">Carregando...</h1>
+            <div class="profile-badges">
+              <span class="badge verified" title="Perfil verificado">
+                <i class="fa-solid fa-check"></i>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="profile-meta">
+            <span class="course-info" id="courseInfo">
+              <i class="fa-solid fa-graduation-cap"></i>
+              Carregando curso...
+            </span>
+            <span class="institution-info" id="institutionInfo">
+              <i class="fa-solid fa-university"></i>
+              Carregando instituição...
+            </span>
+          </div>
+
+          <!-- Action Buttons for Other Users -->
+          <div class="profile-actions" id="otherUserActions">
+            <button class="btn-primary" id="messageBtn">
+              <i class="fa-solid fa-envelope"></i>
+              Enviar Mensagem
+            </button>
+
+            <button class="btn-secondary" id="connectBtn">
+              <i class="fa-solid fa-user-plus"></i>
+              Conectar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Stats -->
+      <div class="profile-stats">
+        <div class="stat-item">
+          <span class="stat-number" id="connectionsCount">0</span>
+          <span class="stat-label">Conexões</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="studyGroupsCount">0</span>
+          <span class="stat-label">Grupos de Estudo</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="helpedStudentsCount">0</span>
+          <span class="stat-label">Estudantes Ajudados</span>
+        </div>
+      </div>
+
+      <!-- Bio Section -->
+      <div class="profile-section">
+        <h2 class="section-title">
+          <i class="fa-solid fa-quote-left"></i>
+          Sobre
+        </h2>
+        <div class="bio-content">
+          <p id="profileBio">Carregando biografia...</p>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="profile-section">
+        <h2 class="section-title">
+          <i class="fa-solid fa-star"></i>
+          Especialidades
+        </h2>
+        <div class="skills-container" id="skillsContainer">
+          <p class="no-skills">Carregando especialidades...</p>
+        </div>
+      </div>
+
+      <!-- Availability Section -->
+      <div class="profile-section">
+        <h2 class="section-title">
+          <i class="fa-solid fa-calendar-check"></i>
+          Disponibilidade
+        </h2>
+        <div class="availability-info">
+          <div class="availability-item">
+            <span class="availability-label">Dias disponíveis:</span>
+            <div class="availability-days" id="availableDays">
+              <span class="day-chip">Carregando...</span>
+            </div>
+          </div>
+          <div class="availability-item">
+            <span class="availability-label">Horários preferidos:</span>
+            <div class="availability-times" id="availableTimes">
+              <span class="time-chip">Carregando...</span>
+            </div>
+          </div>
+          <div class="availability-item">
+            <span class="availability-label">Modalidade de estudo:</span>
+            <div class="study-preferences" id="studyPreferences">
+              <span class="preference-chip">Carregando...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Info Section -->
+      <div class="profile-section">
+        <h2 class="section-title">
+          <i class="fa-solid fa-book"></i>
+          Informações Acadêmicas
+        </h2>
+        <div class="academic-grid">
+          <div class="academic-item">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <div class="academic-info">
+              <span class="academic-label">Curso</span>
+              <span class="academic-value" id="academicCourse">Carregando...</span>
+            </div>
+          </div>
+          <div class="academic-item">
+            <i class="fa-solid fa-university"></i>
+            <div class="academic-info">
+              <span class="academic-label">Instituição</span>
+              <span class="academic-value" id="academicInstitution">Carregando...</span>
+            </div>
+          </div>
+          <div class="academic-item">
+            <i class="fa-solid fa-calendar-alt"></i>
+            <div class="academic-info">
+              <span class="academic-label">Semestre</span>
+              <span class="academic-value" id="academicSemester">Carregando...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- SVG Filter for Menu Effects -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="shadowed-goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2"
+            result="shadow" />
+          <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+          <feComposite in2="shadow" in="goo" result="goo" />
+          <feComposite in2="goo" in="SourceGraphic" result="mix" />
+        </filter>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feComposite in2="goo" in="SourceGraphic" result="mix" />
+        </filter>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Hidden logout form -->
+  <form id="logoutForm" method="post" action="{% url 'logout' %}" style="display: none;">
+    {% csrf_token %}
+  </form>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="{% static 'js/configuracoes/user-profile.js' %}"></script>
+</body>
+
+</html>

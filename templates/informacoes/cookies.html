@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uso de Cookies | UniCrossed.com</title>
+  <link rel="icon" href="{% static 'img/home/UniCrossed_Logo.jpg' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'css/informacoes/termos.css' %}" />
+</head>
+
+<body>
+  <video class="video-bg" autoplay muted loop>
+    <source src="{% static 'videos/home/home.mp4' %}" type="video/mp4" />
+  </video>
+
+  <div class="config-container">
+    <div class="config-topbar">
+      <button class="btn-voltar" onclick="history.back()">
+        <i class="fa-solid fa-arrow-left"></i> Voltar
+      </button>
+      <h1><i class="fa-solid fa-cookie-bite"></i> Uso de Cookies</h1>
+    </div>
+
+    <p>Este documento descreve como o site UniCrossed utiliza cookies e tecnologias similares para melhorar a
+      experiência do usuário durante a navegação.</p>
+
+    <h2>1. O que são Cookies?</h2>
+    <p>Cookies são pequenos arquivos de texto armazenados no seu navegador quando você acessa um site. Eles são
+      utilizados para lembrar preferências, melhorar o desempenho e personalizar sua experiência.</p>
+
+    <h2>2. Por que usamos Cookies?</h2>
+    <p>Os cookies ajudam a UniCrossed a oferecer uma navegação mais eficiente e personalizada. Utilizamos cookies para:
+    </p>
+    <ul>
+      <li>Lembrar suas preferências visuais (como o modo claro ou escuro);</li>
+      <li>Manter o login do usuário ativo durante a sessão;</li>
+      <li>Melhorar a performance e a segurança da plataforma;</li>
+      <li>Analisar interações de uso para otimização futura da interface.</li>
+    </ul>
+
+    <h2>3. Tipos de Cookies Utilizados</h2>
+    <ul>
+      <li><strong>Essenciais:</strong> necessários para o funcionamento básico da plataforma;</li>
+      <li><strong>Funcionais:</strong> lembram preferências de interface e configurações personalizadas;</li>
+      <li><strong>Analíticos:</strong> utilizados internamente para entender o uso da plataforma e melhorar a
+        usabilidade (sem identificar usuários).</li>
+    </ul>
+
+    <h2>4. Controle de Cookies</h2>
+    <p>Você pode, a qualquer momento, configurar seu navegador para bloquear ou remover cookies. No entanto, a
+      desativação de cookies essenciais pode afetar o funcionamento adequado da plataforma UniCrossed.</p>
+
+    <h2>5. Consentimento</h2>
+    <p>Ao continuar navegando na plataforma UniCrossed, você concorda com o uso de cookies conforme descrito nesta
+      página.</p>
+
+    <h2>6. Dúvidas</h2>
+    <p>Se você tiver dúvidas específicas sobre o uso de cookies, entre em contato pelo e-mail:
+      <strong>suporte@unicrossed.com</strong></p>
+
+    <footer style="margin-top: 40px; text-align: center; color: #aaa;">
+      © 2025 UniCrossed. Todos os direitos reservados.
+    </footer>
+  </div>
+</body>
+
+</html>

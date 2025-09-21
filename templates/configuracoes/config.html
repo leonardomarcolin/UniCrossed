@@ -1,0 +1,341 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações - UniCrossed.com</title>
+  <link rel="icon" href="{% static 'img/home/UniCrossed_Logo.jpg' %}" type="image/x-icon" />
+  <link rel="stylesheet" href="{% static 'css/global-vars.css' %}/" />
+  <link rel="stylesheet" href="{% static 'css/configuracoes/config.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <video autoplay muted loop class="video-bg">
+    <source src="{% static 'videos/home/home.mp4' %}" type="video/mp4">
+  </video>
+
+  <div class="config-container">
+    <!-- Enhanced Topbar with breadcrumbs -->
+    <div class="config-topbar">
+      <button class="btn-voltar" onclick="history.back()" aria-label="Voltar para página anterior">
+        <i class="fa-solid fa-arrow-left"></i> Voltar
+      </button>
+      <nav class="breadcrumb">
+        <span>UniCrossed</span>
+        <i class="fa-solid fa-angle-right"></i>
+        <span class="current">Configurações</span>
+      </nav>
+      <h1><i class="fa-solid fa-gear"></i> Configurações da Conta</h1>
+    </div>
+
+    <form class="config-form" id="configForm" novalidate>
+      <div class="config-content">
+
+        <!-- CONTA E ACESSO -->
+        <section class="config-section" data-section="account">
+          <h2>Configurações Gerais</h2>
+          <div class="section-note">
+            <i class="fa-solid fa-info-circle"></i>
+            <p>Para editar seu perfil, foto e informações pessoais, <a href="user-profile" style="color: var(--primary-green); text-decoration: underline;">clique aqui</a> ou clique na sua foto de perfil na página principal.</p>
+          </div>
+        </section>
+
+
+      <!-- CONTA E PERFIL -->
+      <section class="config-section">
+        <h2>Conta e Perfil</h2>
+        <div class="config-item">
+          <label>Editar perfil e informações</label>
+          <button class="btn-action" onclick="window.location.href='user-profile'">Abrir Perfil</button>
+        </div>
+        <div class="config-item">
+          <label>Alterar senha e segurança</label>
+          <button class="btn-action" onclick="window.location.href='config-profile'">Configurar</button>
+        </div>
+        <div class="config-item">
+          <label>Backup de dados</label>
+          <button class="btn-action" onclick="exportUserData()">Exportar Dados</button>
+        </div>
+        <div class="config-item">
+          <label>Status da conta</label>
+          <span class="config-value status-active">✅ Ativa e verificada</span>
+        </div>
+      </section>
+
+      <!-- APARÊNCIA -->
+      <section class="config-section">
+        <h2>Aparência e Interface</h2>
+        <div class="config-item">
+          <label for="modoClaroToggle">Modo claro</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="modoClaroToggle" class="toggle-input">
+            <label for="modoClaroToggle" class="toggle-label"></label>
+          </div>
+        </div>
+        <div class="config-item">
+          <label for="fontSize">Tamanho da fonte</label>
+          <select id="fontSize" class="select-input">
+            <option value="small">Pequena</option>
+            <option value="medium" selected>Média</option>
+            <option value="large">Grande</option>
+          </select>
+        </div>
+        <div class="config-item">
+          <label for="language">Idioma</label>
+          <select id="language" class="select-input">
+            <option value="pt-br" selected>Português (Brasil)</option>
+            <option value="en-us">English (US)</option>
+            <option value="es">Español</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- PRIVACIDADE -->
+      <section class="config-section">
+        <h2>Privacidade</h2>
+
+        <div class="config-item">
+          <label for="mostrarStatusOnline">Mostrar status online</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="mostrarStatusOnline" class="toggle-input" checked>
+            <label for="mostrarStatusOnline" class="toggle-label"></label>
+          </div>
+        </div>
+
+        <div class="config-item">
+          <label for="confirmacaoVisualizacao">Enviar confirmação de visualização</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="confirmacaoVisualizacao" class="toggle-input" checked>
+            <label for="confirmacaoVisualizacao" class="toggle-label"></label>
+          </div>
+        </div>
+        
+        <div class="config-item">
+          <label for="perfilPublico">Perfil visível para todos</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="perfilPublico" class="toggle-input" checked>
+            <label for="perfilPublico" class="toggle-label"></label>
+          </div>
+        </div>
+
+        <div class="config-item">
+          <label for="mostrarCurso">Mostrar curso no perfil</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="mostrarCurso" class="toggle-input" checked>
+            <label for="mostrarCurso" class="toggle-label"></label>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- NOTIFICAÇÕES -->
+      <section class="config-section">
+        <h2>Notificações</h2>
+        <div class="config-item">
+          <label for="notifMatchs">Notificar novos matchs de estudo</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="notifMatchs" class="toggle-input" checked>
+            <label for="notifMatchs" class="toggle-label"></label>
+          </div>
+        </div>
+        <div class="config-item">
+          <label for="notifEventos">Receber eventos de grupos</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="notifEventos" class="toggle-input">
+            <label for="notifEventos" class="toggle-label"></label>
+          </div>
+        </div>
+        <div class="config-item">
+          <label for="notifMsg">Notificações de mensagens</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="notifMsg" class="toggle-input" checked>
+            <label for="notifMsg" class="toggle-label"></label>
+          </div>
+        </div>
+        <div class="config-item">
+          <label for="notifSound">Sons de notificação</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="notifSound" class="toggle-input" checked>
+            <label for="notifSound" class="toggle-label"></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- DADOS E ARMAZENAMENTO -->
+      <section class="config-section">
+        <h2>Dados e Armazenamento</h2>
+        <div class="config-item">
+          <label>Limpar cache do aplicativo</label>
+          <button class="btn-action" onclick="clearAppCache()">Limpar Cache</button>
+        </div>
+        <div class="config-item">
+          <label>Uso de dados</label>
+          <span class="config-value">2.4 MB utilizados</span>
+        </div>
+        <div class="config-item">
+          <label for="autoBackup">Backup automático</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="autoBackup" class="toggle-input" checked>
+            <label for="autoBackup" class="toggle-label"></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- AJUDA E SUPORTE -->
+      <section class="config-section">
+        <h2>Ajuda e Suporte</h2>
+        <div class="config-item">
+          <label>Central de ajuda</label>
+          <button class="btn-action" onclick="openHelpCenter()">Abrir Ajuda</button>
+        </div>
+        <div class="config-item">
+          <label>Reportar problema</label>
+          <button class="btn-action" onclick="reportIssue()">Reportar</button>
+        </div>
+        <div class="config-item">
+          <label>Versão do aplicativo</label>
+          <span class="config-value">v1.2.0</span>
+        </div>
+        <div class="config-item">
+          <label>Termos de uso</label>
+          <button class="btn-action" onclick="viewTerms()">Ver Termos</button>
+        </div>
+      </section>
+
+        <!-- ACTION BUTTONS -->
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="resetForm">
+            <i class="fa-solid fa-undo"></i>
+            Resetar Alterações
+          </button>
+          <button type="submit" class="btn-salvar" id="saveButton">
+            Salvar Todas as Configurações
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="loading-spinner">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      <p>Salvando configurações...</p>
+    </div>
+  </div>
+
+  <!-- Problem Report Modal -->
+  <div class="modal-overlay" id="problemModal" style="display: none;">
+    <div class="modal-container problem-modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-bug"></i> Reportar Problema</h3>
+        <button class="modal-close" onclick="closeProblemModal()">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      
+      <form class="modal-form" id="problemForm">
+        <div class="form-group">
+          <label for="problemType">Tipo de Problema</label>
+          <select id="problemType" class="modal-select" required>
+            <option value="">Selecione o tipo de problema</option>
+            <option value="bug">Bug / Erro no Sistema</option>
+            <option value="ui">Problema de Interface</option>
+            <option value="performance">Problema de Performance</option>
+            <option value="login">Problema de Login/Acesso</option>
+            <option value="notification">Problema com Notificações</option>
+            <option value="match">Problema com Matches</option>
+            <option value="profile">Problema com Perfil</option>
+            <option value="messaging">Problema com Mensagens</option>
+            <option value="other">Outro Problema</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="problemTitle">Título do Problema</label>
+          <input type="text" id="problemTitle" class="modal-input" placeholder="Descreva brevemente o problema" required maxlength="100">
+          <small class="char-counter">0/100</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="problemDescription">Descrição Detalhada</label>
+          <textarea id="problemDescription" class="modal-textarea" placeholder="Descreva o problema em detalhes:
+- O que você estava fazendo quando o problema ocorreu?
+- Quais passos você seguiu?
+- O que deveria acontecer vs o que realmente aconteceu?" required maxlength="1000" rows="6"></textarea>
+          <small class="char-counter">0/1000</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="problemDevice">Informações do Dispositivo</label>
+          <input type="text" id="problemDevice" class="modal-input" placeholder="Ex: Windows 11, Chrome 120, Smartphone Android" maxlength="150">
+          <small class="char-counter">0/150</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="problemFrequency">Frequência do Problema</label>
+          <select id="problemFrequency" class="modal-select">
+            <option value="">Selecione a frequência</option>
+            <option value="always">Sempre acontece</option>
+            <option value="often">Acontece frequentemente</option>
+            <option value="sometimes">Acontece às vezes</option>
+            <option value="rare">Acontece raramente</option>
+            <option value="once">Aconteceu apenas uma vez</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="problemPriority">Prioridade</label>
+          <select id="problemPriority" class="modal-select">
+            <option value="">Selecione a prioridade</option>
+            <option value="critical">Crítica - Não consigo usar o app</option>
+            <option value="high">Alta - Afeta funcionalidades importantes</option>
+            <option value="medium">Média - Inconveniente mas posso contornar</option>
+            <option value="low">Baixa - Sugestão de melhoria</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="file-upload-label">
+            <i class="fa-solid fa-camera"></i>
+            Anexar Screenshots (Opcional)
+            <input type="file" id="problemScreenshots" multiple accept="image/*" class="file-input">
+          </label>
+          <div class="file-preview" id="filePreview"></div>
+          <small class="form-hint">
+            <i class="fa-solid fa-info-circle"></i>
+            Máximo 5 imagens, até 5MB cada. Formatos: JPG, PNG, GIF
+          </small>
+        </div>
+        
+        <div class="form-group contact-optional">
+          <label class="checkbox-label">
+            <input type="checkbox" id="includeContact">
+            <span class="checkmark"></span>
+            Incluir minhas informações de contato para acompanhamento
+          </label>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeProblemModal()">
+            <i class="fa-solid fa-times"></i>
+            Cancelar
+          </button>
+          <button type="submit" class="btn-submit" id="submitProblem">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span class="btn-text">Enviar Relatório</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{% static 'js/configuracoes/config.js' %}"></script>
+</body>
+
+</html>
